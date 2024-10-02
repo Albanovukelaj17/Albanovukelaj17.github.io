@@ -1,19 +1,20 @@
 const strings = [
     "I'm Vukelaj Albano.",
     "I am Albanian, born and raised in Italy.",
-       " I moved to Germany, where I study Applied Informatics at Wiesbaden University (HSRM).",
-       " I am currently in my fifth semester.",
-       " I only began in the last few months to give Informatics a fair chance and have been working a lot in my free time.",
-       " I am very enthusiastic about the future and curious about how many projects I can create.",
-       " This is a phase of learning, which is why the projects are not very advanced.",
-       " In the near future, I will possibly be working on larger and more complex projects.",
-       " Currently spoken languages: Italian, German, English, Spanish, Albanian.",
+    "I moved to Germany, where I study Applied Informatics at Wiesbaden University (HSRM).",
+    "I am currently in my fifth semester.",
+    "I only began in the last few months to give Informatics a fair chance and have been working a lot in my free time.",
+    "I am very enthusiastic about the future and curious about how many projects I can create.",
+    "This is a phase of learning, which is why the projects are not very advanced.",
+    "In the near future, I will possibly be working on larger and more complex projects.",
+    "Currently spoken languages: Italian, German, English, Spanish, Albanian.",
     "Currently using programming languages in Informatics: Python, Java, JavaScript, C, C#, Ruby, Rust, Swift."
 ];
 
 let counter = 0;
 let index = 0;
 let textElement = document.getElementById("text-resolver");
+let topContainer = document.getElementById("top-container");
 
 function typeText(text, speed, callback) {
     if (index < text.length) {
@@ -31,8 +32,19 @@ function deleteText(speed, callback) {
         index--;
         setTimeout(() => deleteText(speed, callback), speed);
     } else {
+        // Move the deleted sentence to the top container
+        addSentenceToTop(strings[counter]);
         callback();
     }
+}
+
+function addSentenceToTop(sentence) {
+    const oldSentence = document.createElement('div');
+    oldSentence.classList.add('old-sentence');
+    oldSentence.textContent = sentence;
+
+    // Append the sentence to the top container (newer sentences are added to the bottom)
+    topContainer.appendChild(oldSentence);
 }
 
 function animateText() {
@@ -49,6 +61,7 @@ function animateText() {
 
 animateText();
 
+// Particle background creation
 function createParticles() {
     const particleBackground = document.getElementById('particle-background');
 

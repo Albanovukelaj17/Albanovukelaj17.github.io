@@ -9,14 +9,28 @@ body {
     color: white;
     overflow: hidden;
     margin: 0;
+    position: relative;
+    flex-direction: column;
+}
+
+/* Top Container Styles */
+.top-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100%;
+    text-align: left;
+    font-size: 1.2em;
+    color: white;
+    padding-left: 20px;
 }
 
 /* Text Resolver Styles */
 .resolver {
     font-size: 1.5em;
-    position: relative;
-    width: 80%;
     text-align: center;
+    z-index: 1;
+    margin-top: 50px;
 }
 
 /* Blinking Cursor */
@@ -42,13 +56,14 @@ body {
     background: radial-gradient(ellipse at center, rgba(0,0,0,0.3), transparent);
     overflow: hidden;
     pointer-events: none;
+    z-index: 0;
 }
 
 .particle {
     position: absolute;
     width: 4px;
     height: 4px;
-    background: lime;
+    background: blue;
     border-radius: 50%;
     opacity: 0.8;
     animation: move 5s linear infinite;
